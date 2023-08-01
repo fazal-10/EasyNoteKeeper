@@ -1,22 +1,20 @@
 <?php
-//INSERT INTO `notes` (`sr no`, `title`, `description`, `tstamp`) VALUES (NULL, 'buy books', 'buy 5 books from store.', current_timestamp());
-$insert = false;
-$update = false;
-$delete = false;
 //connecting to database
-$servername = "localhost";
-$username ="root";
-$password = "";
-$database = "notes";
-
-//create a connection
-$conn = mysqli_connect($servername,$username,$password,$database);
+require_once "config.php";
+$conn = mysqli_connect($servername, $username, $password, $database);
 
 //Die if connection was not succesful
 if(!$conn)
 {
     die("Sorry,we failed to connect : " . mysqli_connect_error());
 }
+?>
+<?php
+//INSERT INTO `notes` (`sr no`, `title`, `description`, `tstamp`) VALUES (NULL, 'buy books', 'buy 5 books from store.', current_timestamp());
+$insert = false;
+$update = false;
+$delete = false;
+
 if(isset($_GET['delete']))
 {
     $sno = $_GET['delete'];
