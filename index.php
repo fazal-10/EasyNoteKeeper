@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
         $title = $_POST["title"];
         $description = $_POST["description"];
 
-        //sql squery to be executed
+        //sql query to be executed
         $sql = "INSERT INTO `notes` (`title`, `description`) VALUES ('$title', '$description')";
         $result = mysqli_query($conn,$sql);
 
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./Images/logo.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <style>
@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
                         <div class="mb-3">
                             <label for="title" class="form-label">Note Title</label>
                             <input type="text" class="form-control" id="titleEdit" name="titleEdit"
-                                aria-describedby="emailHelp">
+                                aria-describedby="emailHelp" required>
                         </div>
                         <div class="mb-3">
                             <label for="desc" class="form-label">Note Description</label>
@@ -152,14 +152,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
     </div>
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="/CRUD/logo.png" height="50 px" alt="notes logo"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" href="#"><img src="./Images/logo.png" height="50 px" alt="notes logo"></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -178,6 +173,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
       <strong>Success</strong> Your note has been inserted successfully.
       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
     </div>";
+        $insert = false;
     }
 
     ?>
@@ -189,6 +185,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
       <strong>Success</strong> Your note has been updated successfully.
       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
     </div>";
+        $update = false;
     }
 
     ?>
@@ -200,6 +197,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
       <strong>Success</strong> Your note has been deleted successfully.
       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
     </div>";
+        $delete = false;
     }
 
     ?>
@@ -270,11 +268,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
             tr = e.target.parentNode.parentNode;
             title = tr.getElementsByTagName("td")[0].innerText;
             description = tr.getElementsByTagName("td")[1].innerText;
-            console.log(title, description);
+            // console.log(title, description);
             titleEdit.value = title;
             descriptionEdit.value = description;
             snoEdit.value = e.target.id;
-            console.log(e.target.id);
+            // console.log(e.target.id);
             $('#editModal').modal('toggle');
         })
     })
@@ -285,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
             // console.log("delete ", );
             sno = e.target.id.substr(1, );
             if (confirm("Are you sure you want to delete this note")) {
-                console.log("yes");
+                // console.log("yes");
                 window.location = `/CRUD/index.php?delete=${sno}`;
             } else {
                 console.log("no");
